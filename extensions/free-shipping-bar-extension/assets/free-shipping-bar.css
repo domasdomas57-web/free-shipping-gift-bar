@@ -1,0 +1,230 @@
+.fsb-root {
+  position: relative;
+  z-index: 2147483000;
+  width: 100%;
+}
+
+.fsb-bar-host {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  pointer-events: none;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  z-index: 2147483000;
+}
+
+.fsb-bar-host--anchored {
+  position: relative;
+  padding: 0;
+}
+
+.fsb-bar-host--anchored-top {
+  margin-bottom: 16px;
+}
+
+.fsb-bar-host--anchored-bottom {
+  margin-top: 16px;
+}
+
+.fsb-bar-host--inline {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.fsb-bar-host--align-left {
+  justify-content: flex-start;
+}
+
+.fsb-bar-host--align-center {
+  justify-content: center;
+}
+
+.fsb-bar-host--align-right {
+  justify-content: flex-end;
+}
+
+.fsb-bar-host--floating {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: auto;
+  padding: 12px 16px;
+  max-width: calc(100% - 32px);
+}
+
+.fsb-bar-host--floating-top-left {
+  top: 24px;
+  left: 24px;
+  justify-content: flex-start;
+}
+
+.fsb-bar-host--floating-top-center {
+  top: 24px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+}
+
+.fsb-bar-host--floating-top-right {
+  top: 24px;
+  right: 24px;
+  justify-content: flex-end;
+}
+
+.fsb-bar-host--floating-bottom-left {
+  bottom: 24px;
+  left: 24px;
+  justify-content: flex-start;
+}
+
+.fsb-bar-host--floating-bottom-center {
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+}
+
+.fsb-bar-host--floating-bottom-right {
+  bottom: 24px;
+  right: 24px;
+  justify-content: flex-end;
+}
+
+.fsb-bar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 54px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4ade80, #16a34a);
+  color: #ffffff;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+  max-width: min(960px, 100%);
+  width: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fsb-bar--anchored {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.fsb-bar--floating {
+  max-width: min(960px, 100%);
+}
+
+.fsb-bar[data-state="unlocked"] {
+  box-shadow: 0 12px 22px rgba(22, 163, 74, 0.24);
+}
+
+.fsb-bar--anchored[data-state="unlocked"] {
+  box-shadow: none;
+}
+
+.fsb-bar--inline {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.fsb-bar--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.fsb-bar__text {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .fsb-bar-host--floating {
+    padding: 10px;
+  }
+
+  .fsb-bar {
+    padding: 12px 16px;
+  }
+
+  .fsb-bar--floating {
+    border-radius: 24px;
+  }
+
+  .fsb-bar__text {
+    font-size: 15px;
+  }
+
+  .fsb-bar-host--floating-top-left,
+  .fsb-bar-host--floating-bottom-left {
+    left: 16px;
+  }
+
+  .fsb-bar-host--floating-top-right,
+  .fsb-bar-host--floating-bottom-right {
+    right: 16px;
+  }
+
+  .fsb-bar-host--floating-top-left,
+  .fsb-bar-host--floating-top-center,
+  .fsb-bar-host--floating-top-right {
+    top: 16px;
+  }
+
+  .fsb-bar-host--floating-bottom-left,
+  .fsb-bar-host--floating-bottom-center,
+  .fsb-bar-host--floating-bottom-right {
+    bottom: 16px;
+  }
+}
+
+@keyframes fsbGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.fsb-bar--animate {
+  background-size: 200% 200%;
+  animation: fsbGradientShift 8s ease infinite;
+}
+
+.fsb-root .fsb-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5923e6, #06a56a);
+  color: #ffffff;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+}

@@ -1,0 +1,42 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "46a8bbd81b1d71aea9283d4b0cd826f7"
+name = "Free Shipping - Gift Bar"
+application_url = "https://blackjack-spokesman-warren-equipped.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2026-01"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [
+  "https://generate-necessarily-street-changing.trycloudflare.com/auth/callback"
+]
+
+[app_proxy]
+url = "https://example.com/apps/free-shipping-bundle"
+subpath = "free-shipping-bundle"
+prefix = "apps"
+
+[[extensions]]
+name = "Free Shipping Bar"
+type = "theme"
+handle = "free-shipping-bar-extension"

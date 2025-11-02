@@ -1,0 +1,41 @@
+{% assign shipping_root_id = 'free-shipping-bar-root-' | append: block.id %}
+{% assign gift_root_id = 'free-gift-bar-root-' | append: block.id %}
+
+<div
+  class="fsb-root"
+  id="{{ shipping_root_id }}"
+  data-settings-endpoint="/apps/free-shipping-bundle/api/settings"
+  data-shop-domain="{{ shop.permanent_domain }}"
+  data-shop-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+  data-locale="{{ localization.language.iso_code | default: shop.locale | default: 'en' }}"
+></div>
+<script
+  src="{{ 'free-shipping-bar.js' | asset_url }}"
+  defer
+  data-root-id="{{ shipping_root_id }}"
+  data-bundle-type="free-shipping"
+></script>
+
+<div
+  class="fsb-root"
+  id="{{ gift_root_id }}"
+  data-settings-endpoint="/apps/free-shipping-bundle/api/settings"
+  data-shop-domain="{{ shop.permanent_domain }}"
+  data-shop-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+  data-locale="{{ localization.language.iso_code | default: shop.locale | default: 'en' }}"
+></div>
+<script
+  src="{{ 'free-shipping-bar.js' | asset_url }}"
+  defer
+  data-root-id="{{ gift_root_id }}"
+  data-bundle-type="free-gift"
+></script>
+
+<link rel="stylesheet" href="{{ 'free-shipping-bar.css' | asset_url }}">
+
+{% schema %}
+{
+  "name": "Free Shipping Bar",
+  "target": "body"
+}
+{% endschema %}

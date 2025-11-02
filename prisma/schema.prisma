@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model Subscription {
+  id                String   @id @default(cuid())
+  shop              String   @unique
+  subscriptionId    String   @unique
+  planName          String
+  planKey           String   @default("shipping")
+  status            String
+  test              Boolean  @default(true)
+  trialDays         Int?
+  currentPeriodEnd  DateTime?
+  price             Float
+  currency          String   @default("EUR")
+  interval          String   @default("EVERY_30_DAYS")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  trialEndsAt       DateTime?
+}
+
+model FreeShippingBarSettings {
+  id               String   @id @default(cuid())
+  shop             String   @unique
+  enabled          Boolean  @default(true)
+  position         String   @default("top")
+  floatingAlignment String   @default("top-center")
+  colorMode        String   @default("gradient")
+  solidColor       String   @default("#16A34A")
+  gradientStart    String   @default("#4ADE80")
+  gradientEnd      String   @default("#16A34A")
+  textColor        String   @default("#FFFFFF")
+  fontSize         String   @default("medium")
+  bold             Boolean  @default(true)
+  animateProgress  Boolean  @default(true)
+  threshold        String   @default("20")
+  hideWhenUnlocked Boolean  @default(false)
+  visibilityMode   String   @default("always")
+  visibilityDurationSeconds String @default("10")
+  lockedMessage    String   @default("Spend {{remaining}} more to unlock Free Shipping!")
+  unlockedMessage  String   @default("Congratulations! You unlocked Free Shipping!")
+  currencyMode     String   @default("auto")
+  manualCurrency   String   @default("EUR")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model FreeGiftBundleSettings {
+  id                        String   @id @default(cuid())
+  shop                      String   @unique
+  enabled                   Boolean  @default(true)
+  position                  String   @default("top")
+  floatingAlignment         String   @default("top-center")
+  threshold                 String   @default("50")
+  giftProductId             String?
+  giftProductTitle          String?
+  giftVariantId             String?
+  giftVariantTitle          String?
+  giftProductImageUrl       String?
+  colorMode                 String   @default("gradient")
+  solidColor                String   @default("#0EA5E9")
+  gradientStart             String   @default("#38BDF8")
+  gradientEnd               String   @default("#0EA5E9")
+  textColor                 String   @default("#FFFFFF")
+  fontSize                  String   @default("medium")
+  bold                      Boolean  @default(true)
+  animateProgress           Boolean  @default(true)
+  lockedMessage             String   @default("Add {{remaining}} more to unlock your free gift!")
+  unlockedMessage           String   @default("You've unlocked your free gift! We'll add it automatically.")
+  autoAdd                   Boolean  @default(true)
+  autoRemove                Boolean  @default(true)
+  hideWhenUnlocked          Boolean  @default(false)
+  visibilityMode            String   @default("always")
+  visibilityDurationSeconds String   @default("10")
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}
+
+model ShopSettings {
+  id                 String   @id @default(cuid())
+  shop               String   @unique
+  plan               String   @default("shipping")
+  activeFeatures     Json
+  subscriptionStatus String   @default("inactive")
+  subscriptionId     String?
+  trialEndsAt        DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

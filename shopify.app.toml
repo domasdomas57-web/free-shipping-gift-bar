@@ -33,8 +33,8 @@ api_version = "2025-10"
   uri = "/webhooks/app/scopes_update"
 
 [app_proxy]
-url = "https://free-shipping-gift-bar.vercel.app/apps/free-shipping-bundle"
-subpath = "free-shipping-bundle"
+url = "https://free-shipping-gift-bar.vercel.app/apps/free-shipping-gift-bar"
+subpath = "free-shipping-gift-bar"
 prefix = "apps"
 
 [[extensions]]

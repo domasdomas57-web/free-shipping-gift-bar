@@ -1,5 +1,5 @@
 {
-  "name": "free-shipping-bundle",
+  "name": "free-shipping-gift-bar",
   "private": true,
   "scripts": {
     "build": "remix vite:build",
